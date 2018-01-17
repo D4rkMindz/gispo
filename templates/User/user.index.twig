@@ -1,0 +1,66 @@
+{% extends "layout.twig" %}
+
+{# Assets #}
+{% block assets %}
+    {{ assets({files: []}) }}
+{% endblock %}
+
+{# Content #}
+{% block content %}
+    {% if found %}
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <div class="row">
+            <div class="col-sm-7">
+                <table class="table">
+                    <tr>
+                        <td>{{ __('ID') }}</td>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('First name') }}</td>
+                        <td>{{ user.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Last name') }}</td>
+                        <td>{{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Barcode') }}</td>
+                        <td>{{ user.barcode }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Email') }}</td>
+                        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>{{ __('Status') }}</td>
+                        <td>{{ user.status }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-5">
+                <img src="{{ user.img_url }}" alt="" style="max-width: 100%;">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ __('Action') }}</th>
+                    <th>{{ __('Time') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for action in user.last_actions %}
+                    <tr data-action-id="{{ action.id }}">
+                        <td>{{ action.name }}</td>
+                        <td>{{ action.time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h1>{{ __('No user found') }}</h1>
+    {% endif %}
+{% endblock %}

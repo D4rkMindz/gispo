@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-12-01 14:55+0100\n"
+"PO-Revision-Date: 2017-12-01 14:55+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ../../tmp/cache/twig\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 63/63dc5063f52b61056f5c5e0b33d31ddf5046976f8dfe86cee2f414d6d65034f6.php:43
+#: 64/649288c88e4d528f0db21fd4af29df61a444b6d4b36413bcd84848185b912f38.php:43
+msgid "Hello"
+msgstr "Hello"
+
+#: 63/63dc5063f52b61056f5c5e0b33d31ddf5046976f8dfe86cee2f414d6d65034f6.php:56
+#: 64/649288c88e4d528f0db21fd4af29df61a444b6d4b36413bcd84848185b912f38.php:56
+msgid "Username"
+msgstr "Username"
+
+#: 63/63dc5063f52b61056f5c5e0b33d31ddf5046976f8dfe86cee2f414d6d65034f6.php:62
+#: 64/649288c88e4d528f0db21fd4af29df61a444b6d4b36413bcd84848185b912f38.php:62
+msgid "Firstname"
+msgstr "First name"
+
+#: 63/63dc5063f52b61056f5c5e0b33d31ddf5046976f8dfe86cee2f414d6d65034f6.php:68
+#: 64/649288c88e4d528f0db21fd4af29df61a444b6d4b36413bcd84848185b912f38.php:68
+msgid "Lastname"
+msgstr "Last name"

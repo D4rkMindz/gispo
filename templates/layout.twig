@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#222222">
+    <meta name="author" content="Bjoern Pfoster">
+    <meta name="description" content="A proper Contactform :D">
+    <meta name="keywords" content="Contact, contactform, d4rkmidnz">
+    <meta name="robots" content="nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <base href="{{ base_url() }}/">
+    <base name="xhr-baseurl" href="{{ path_for('root', { 'language': language }) }}">
+    <link rel="canonical" href="{{ path_for('root') }}"/>
+    <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/notifit.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/loading-btn.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="application/javascript" src="js/jquery.min.js"></script>
+    <script type="application/javascript" src="js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="js/mustache.min.js"></script>
+    <script type="application/javascript" src="js/notifit.js"></script>
+    <script type="application/javascript" src="js/script.js"></script>
+
+    <title>{{ page }}</title>
+    {% block assets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse container">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path_for('root') }}">{{ __('Home') }} <span class="sr-only">{{ __('(current)') }}</span></a>
+            </li>
+        </ul>
+        <div class="my-2 my-lg-0">
+            <i>Powered by </i>
+            <a class="navbar-brand" href="https://www.orca-services.ch">
+                <img src="img/logo.svg" width="80px" alt="ORCA Services AG">
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<nav class="navbar fixed-bottom navbar-light bg-transparent">
+    <a href="https://darkmindz.ch" class="font-small">Created by Björn Pfoster</a>
+</nav>
+
+</body>
+</html>

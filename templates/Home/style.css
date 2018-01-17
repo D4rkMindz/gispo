@@ -1,0 +1,8 @@
+h1{
+	color: purple;
+}
+
+.table-hover:hover > td{
+    cursor: pointer;
+    background-color: #d3d3d3;;
+}
