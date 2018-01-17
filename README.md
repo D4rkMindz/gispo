@@ -27,7 +27,7 @@ To visit your Website you have to open http://localhost/<project_directory>/.
 FORK of [D4rkMindz/app_template](https://github.com/D4rkMindz/app_template)
 
 ## Notice
-Replace CDN links with downloaded JS files to work offline.
+rename example.setup.sql to setup.sql and rename example.users.zip to users.zip to execute setup.php without any errors.
 
 # License
 [GNU GPL](LICENSE)
