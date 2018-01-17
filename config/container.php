@@ -49,6 +49,10 @@ $container[Twig::class] = function (Container $container): Twig {
 
     $twig = new Twig($twigSettings['viewPath'],
         ['cache' => $twigSettings['cachePath'], 'auto_reload' => $twigSettings['autoReload']]);
+
+    $loader = $twig->getLoader();
+    $loader->addPath($twigSettings['publicPath'], 'public');
+
     $twig->addExtension(new TwigTranslationExtension());
     $twig->addExtension(new \Slim\Views\TwigExtension($container->get('router'), $basePath));
     $twig->addExtension(new TwigAssetsExtension($twig->getEnvironment(), $twigSettings['assetCache']));

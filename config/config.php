@@ -44,6 +44,7 @@ $config['db_test'] = [
 $config['twig'] = [
     'viewPath' => __DIR__ . '/../templates',
     'cachePath' => __DIR__ . '/../tmp/cache/twig',
+    'publicPath' => __DIR__ . '/../public',
     'autoReload' => true,
     'assetCache' => [
         'path' => __DIR__ . '/../public/assets',
@@ -52,7 +53,7 @@ $config['twig'] = [
         'cache_path' => __DIR__ . '/../tmp/cache',
         'cache_name' => 'assets',
         'cache_lifetime' => 1,
-    ]
+    ],
 ];
 
 $config['session'] = [

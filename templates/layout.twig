@@ -14,17 +14,26 @@
     <link rel="canonical" href="{{ path_for('root') }}"/>
     <link rel="icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/notifit.min.css">
-    <link rel="stylesheet" href="css/loading.min.css">
-    <link rel="stylesheet" href="css/loading-btn.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    {{ assets({files: [
+        '@public/js/jquery.min.js',
+        '@public/js/bootstrap.min.js',
+    ], name:'jquery-bootstrap.js'}) }}
 
-    <script type="application/javascript" src="js/jquery.min.js"></script>
-    <script type="application/javascript" src="js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="js/mustache.min.js"></script>
-    <script type="application/javascript" src="js/notifit.min.js"></script>
-    <script type="application/javascript" src="js/script.js"></script>
+    {# JavaScripts #}
+    {{ assets({files: [
+        '@public/js/mustache.min.js',
+        '@public/js/notifit.min.js',
+        '@public/js/script.js',
+    ], name: 'script.js'}) }}
+
+    {# Styles #}
+    {{ assets({files: [
+        '@public/css/bootstrap.min.css',
+        '@public/css/notifit.min.css',
+        '@public/css/loading.min.css',
+        '@public/css/loading-btn.min.css',
+        '@public/css/style.css',
+    ]}) }}
 
     <title>{{ page }}</title>
     {% block assets %}{% endblock %}
