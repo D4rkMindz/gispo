@@ -161,7 +161,7 @@ class AppController
         $user['last_action'] = $this->userHasActionModel->getLastAction($user['id']);
         $condition = !empty($user['last_action']) ? $user['last_action']['id'] == 1 : false;
         $user['button'] = $condition ? __('Check out') : __('Check in');
-        $user['status'] = $condition ? __('Checked out') : __('Checked in');
+        $user['status'] = $condition ? __('Checked in') : __('Checked out');
         $user['type'] = $condition ? 'success' : 'danger';
 
         return $user;
