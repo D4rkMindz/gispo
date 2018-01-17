@@ -51,8 +51,10 @@ class UserController extends AppController
         $user = $this->userModel->getUser($userId);
         $found = !empty($user);
 
-        $user = $this->formatUser($user);
-        $user['last_actions'] = $this->userHasActionModel->getActions($userId);
+        if ($found) {
+            $user = $this->formatUser($user);
+            $user['last_actions'] = $this->userHasActionModel->getActions($userId);
+        }
 
         $viewData = [
             'found' => $found,
