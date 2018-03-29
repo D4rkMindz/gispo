@@ -1,4 +1,4 @@
-# GISPO GiBM IT Sports Night Management Application
+# GISPO GiBM IT Sports Night Management old Application from 2016
 An application MVC template with Slim and CakePHP QueryBuilder.
 This application is used at the [GiBM IT Sports Night](http://home.gibmit.ch/).
 

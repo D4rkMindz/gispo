@@ -1,90 +1,133 @@
 <?php
-
-use Slim\App;
-use Symfony\Component\Translation\Translator;
-
+require_once 'config.php';
 /**
- * Get app.
+ * Gets HTML encoded string
  *
- * @return App
+ * @param $string
+ * @return mixed|string
  */
-function app(): App
-{
-    static $app = null;
-    if ($app === null) {
-        $config = ['settings' => require_once __DIR__ . '/../config/config.php'];
-        $app = new App($config);
-    }
-
-    return $app;
+function gh($string){
+    $string = htmlentities($string);
+    return $string;
 }
 
 /**
- * Route function.
+ * Writes HTML encoded string
  *
- * @param callable $callback
+ * @param $string
+ */
+function wh($string){
+    echo gh($string);
+}
+
+/**
+ * Replaces umlaut into double characters
+ *
+ * @param $string
  * @return string
  */
-function route(callable $callback): string {
-    return implode(':', (array)$callback);
+function uml($string){
+    $upas = Array(
+        "ä" => "ae",
+        "ü" => "ue",
+        "ö" => "oe",
+        "Ä" => "Ae",
+        "Ü" => "Ue",
+        "Ö" => "Oe",
+        "è" => "e",
+        "é" => "e",
+        "ô" => "o",
+        "ë" => "e"
+
+    );
+    return strtr($string, $upas);
+}
+function getSqlTimeStamp(){
+    $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
+    $now = $now->format(DateTime::ISO8601);
+    return $now;
+}
+function getTimeStamp(){
+    return date("Y-m-d_H-m-s");
+}
+function win1252($string) {
+    $charset =  mb_detect_encoding(
+        $string,
+        "UTF-8, ISO-8859-1, ISO-8859-15",
+        true
+    );
+
+    $string =  mb_convert_encoding($string, "Windows-1252", $charset);
+    return $string;
 }
 
 /**
- * Translation function (i18n).
+ * Gets the twitter bootstrap context class
  *
- * @param $message
+ * It is used t highlight table rows according to their status.
+ * It differs between check_in and check_out use case
+ * -----------
+ * Check_in:
+ *     if unchecked   : ''
+ *     if checked_in  : success
+ *     if checked_out : warning
+ *     if error       : danger
+ * Check_out:
+ *     if unchecked   : danger
+ *     if checked_in  : ''
+ *     if checked_out : success
+ *     if error       : danger
+ *
+ * @param $status
+ * @param $action
  * @return string
- * @throws \Psr\Container\ContainerExceptionInterface
- * @throws \Psr\Container\NotFoundExceptionInterface
  */
-function __($message)
-{
-    /* @var $translator Translator */
-    $translator = app()->getContainer()->get(Translator::class);
-    $translated = $translator->trans($message);
-    $context = array_slice(func_get_args(), 1);
-    if (!empty($context)) {
-        $translated = vsprintf($translated, $context);
-    }
-    return $translated;
-}
-
-/**
- * Remove path tree
- *
- * @param string $delete Path to delete
- * @return bool true if directory removed
- */
-function rrmdir(string $delete): bool
-{
-    $files = array_diff(scandir($delete), array('.', '..'));
-    foreach ($files as $file) {
-        (is_dir("$delete/$file")) ? rrmdir("$delete/$file") : unlink("$delete/$file");
-    }
-    return rmdir($delete);
-}
-
-/**
- * Returns a ISO-8859-1 encoded string or array.
- *
- * @param mixed $data String or array to convert.
- * @return mixed Encoded data.
- */
-function encode_iso($data)
-{
-    if ($data === null || $data === '') {
-        return $data;
-    }
-    if (is_array($data)) {
-        foreach ($data as $key => $value) {
-            $data[$key] = encode_iso($value);
-        }
-        return $data;
-    } else {
-        if (mb_check_encoding($data, 'UTF-8')) {
-            return mb_convert_encoding($data, 'ISO-8859-1', 'auto');
+function getContext($status, $action){
+    $context = '';
+    if($action == 'check_in') {
+        if ($status == 'present') {
+            $context = 'success';
         } else {
-            return $data;
+            $context = '';
         }
     }
+    elseif ($action == 'check_out') {
+        if ($status == 'present') {
+
+            $context = '';
+        } else {
+            $context = 'success';
+        }
+    }
+    return $context;
+}
+function getButton($id,$action,$status) {
+    $href = sprintf('logging.php?id=%s&logging=%s',$id,$action);
+    $button = sprintf('<a class="btn btn-lg btn-danger" href="%s">Fehler Korrigieren</a>',$href);
+    if($action == 'check_in') {
+        if ($status == 'present') {
+            $button = '<button type="button" class="btn btn-default btn-lg" disabled="disabled">Anwesend</button>';
+        } else {
+            $button = sprintf('<a class="btn btn-lg btn-success" href="%s">Erfassen</a>',$href);
+        }
+    }
+    elseif ($action == 'check_out') {
+        if ($status == 'present') {
+
+            $button = sprintf('<a class="btn btn-lg btn-success" href="%s">Erfassen</a>', $href);
+        } else {
+            $button = '<button type="button" class="btn btn-default btn-lg" disabled="disabled">Abwesend</button>';
+        }
+    }
+
+    return $button;
+}
+function getPicture($id = null) {
+    $imgPath = 'assets/img/Students/';
+    $src = $imgPath.$id.'.png';
+    $picture = '<img src="assets/img/preview.png"  width="150">';
+    if(file_exists($src)) {
+        $picture = sprintf('<img src="%s"  width="150">', $src);
+    }
+    return $picture;
 }
