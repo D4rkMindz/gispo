@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Model\RegisteredUserModel;
 use Interop\Container\Exception\ContainerException;
-use Monolog\Handler\RotatingFileHandler;
-use Monolog\Logger;
 use Slim\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -21,11 +19,6 @@ class AuthController extends AppController
     private $registeredUserModel;
 
     /**
-     * @var Logger
-     */
-    private $logger;
-
-    /**
      * AuthController constructor.
      * @param Container $container
      * @throws ContainerException
@@ -34,9 +27,6 @@ class AuthController extends AppController
     {
         parent::__construct($container);
         $this->registeredUserModel = $container->get(RegisteredUserModel::class);
-        $date = date('Y-m-d');
-        $handler = new RotatingFileHandler(__DIR__ . '/../../tmp/logs/' . $date . '_auth.log');
-        $this->logger = new Logger('authentication', [$handler]);
     }
 
     /**

@@ -13,8 +13,7 @@
         "aura/session": "^2.1",
         "zendframework/zend-hydrator": "^2.3",
         "zendframework/zend-filter": "^2.7",
-        "zendframework/zend-servicemanager": "^3.3",
-        "ext-pdo": "*"
+        "zendframework/zend-servicemanager": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4",
