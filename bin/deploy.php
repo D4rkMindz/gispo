@@ -34,7 +34,7 @@ echo "Updating directory permissions to 775\n";
 system("chmod -R 755 ./app");
 //system("chmod 775 ./app/vendor/bin/phinx && chmod -R 775 ./app/vendor/robmorgan/");
 echo "Migrating database";
-system("cd app/config/");
+system("cd ./app/config/");
 system("../vendor/robmorgan/phinx/bin/phinx migrate");
 system("cd ../..");
 echo "Deleting old Backups ...";
