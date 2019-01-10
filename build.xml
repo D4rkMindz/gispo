@@ -134,8 +134,8 @@
         <delete file="${build_dir}/master/composer.lock"/>
         <delete file="${build_dir}/master/config/ant.example.properties"/>
         <delete file="${build_dir}/master/config/env.example.php"/>
-        <delete file="${build_dir}/master/config/clean-up.php"/>
-        <delete file="${build_dir}/master/config/deploy.php"/>
+        <delete file="${build_dir}/master/bin/clean-up.php"/>
+        <delete file="${build_dir}/master/bin/deploy.php"/>
         <delete dir="${build_dir}/master/docs"/>
         <delete dir="${build_dir}/master/vendor/phpstan"/>
         <delete dir="${build_dir}/master/vendor/monolog/monolog/doc"/>
