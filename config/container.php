@@ -7,6 +7,7 @@ use Aura\Session\Session;
 use Aura\Session\SessionFactory;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Odan\Twig\TwigAssetsExtension;
 use Odan\Twig\TwigTranslationExtension;
@@ -143,6 +144,24 @@ $container[Monolog\Logger::class] = function (Container $container) {
 $container['notFoundHandler'] = function (Container $container) {
     return function (Request $request, Response $response) use ($container) {
         return $response->withRedirect($container->get('router')->pathFor('notFound', ['language' => 'en']));
+    };
+};
+
+/**
+ * Error Handler
+ *
+ * @param $container
+ * @return Closure
+ */
+$container['errorHandler'] = function ($container) {
+    return function (Request $request, Response $response, Exception $exception) use ($container) {
+        $date = date('Y-m-d');
+        $handler = new RotatingFileHandler(__DIR__ . '/../../tmp/logs/' . $date . '_auth.log');
+        $logger = new Logger('authentication', [$handler]);
+        $logger->error($exception->getMessage() . "\n" . $exception->getTraceAsString());
+        return $response->withStatus(500)
+            ->withHeader('Content-Type', 'text/html')
+            ->write('Something went wrong!');
     };
 };
 
