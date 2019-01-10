@@ -30,3 +30,6 @@ $app->post('/auth', 'App\Controller\AuthController:authenticateAction')
 
 $app->get('/deauth', 'App\Controller\AuthController:deauthenticateAction')
     ->setName('get.deauth');
+
+$app->get('/error', 'App\Controller\ErrorController:notFoundAction')
+    ->setName('get.error');
