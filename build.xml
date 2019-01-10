@@ -16,7 +16,7 @@
     </tstamp>
 
     <!-- File variables-->
-    <property name="filename" value="contact_form_${timestamp}.zip"/>
+    <property name="filename" value="gispo_${timestamp}.zip"/>
     <property name="build_dir" value="${basedir}/build"/>
 
     <!-- By default, we assume all tools to be on the $PATH -->

@@ -48,7 +48,7 @@ if (!is_dir("backup/")){
 }
 foreach ($dirContent as $file){
     if (is_file($file) && pathinfo($file, PATHINFO_EXTENSION) == "zip"){
-        $fulldate = str_replace("contact_form_", "", $file);
+        $fulldate = str_replace("gispo_", "", $file);
         $date = substr($fulldate, 0, -13);
         $files[] = $file;
         if (!is_dir("./backup/$date/")){
