@@ -3,6 +3,7 @@ nbproject/
 cache.properties
 .idea/
 *.phar
+*.bak
 
 
 config/env.php

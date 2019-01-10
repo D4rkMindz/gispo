@@ -1,9 +1,8 @@
 <?php
 
+use App\Model\RegisteredUserModel;
 use App\Model\UserHasActionModel;
 use App\Model\UserModel;
-use App\Service\Mail\MailerInterface;
-use App\Service\Mail\MailgunAdapter;
 use Aura\Session\Session;
 use Aura\Session\SessionFactory;
 use Cake\Database\Connection;
@@ -40,7 +39,6 @@ $container['environment'] = function (): Environment {
  *
  * @param Container $container
  * @return Twig
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[Twig::class] = function (Container $container): Twig {
     $twigSettings = $container->get('settings')->get('twig');
@@ -65,7 +63,6 @@ $container[Twig::class] = function (Container $container): Twig {
  *
  * @param Container $container
  * @return Translator $translator
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[Translator::class] = function (Container $container): Translator {
     $settings = $container->get('settings')->get(Translator::class);
@@ -80,7 +77,6 @@ $container[Translator::class] = function (Container $container): Translator {
  *
  * @param Container $container
  * @return Connection
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[Connection::class] = function (Container $container): Connection {
     $config = $container->get('settings')->get('db');
@@ -116,7 +112,6 @@ $container[Connection::class] = function (Container $container): Connection {
  *
  * @param Container $container
  * @return Session
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[Session::class] = function (Container $container): Session {
     $factory = new SessionFactory();
@@ -130,35 +125,10 @@ $container[Session::class] = function (Container $container): Session {
 };
 
 /**
- * Mailer container.
- *
- * @param Container $container
- * @return MailgunAdapter
- * @throws \Interop\Container\Exception\ContainerException
- * @throws Exception
- */
-$container[MailerInterface::class] = function (Container $container) {
-    try {
-        $mailSettings = $container->get('settings')->get('mailgun');
-        $mail = new MailgunAdapter($mailSettings['apikey'], $mailSettings['domain'], $mailSettings['from']);
-    } catch (Exception $exception) {
-        $logger = $container->get(Logger::class);
-        $message = $exception->getMessage();
-        $message .= "\n" . $exception->getTraceAsString();
-        $context = $container->get('settings')->get('logger')['context'][MailerInterface::class];
-        $logger->addDebug($message, $context);
-        throw new Exception('Mailer instantiation failed');
-    }
-
-    return $mail;
-};
-
-/**
  * Logger container.
  *
  * @param Container $container
  * @return Logger
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[Monolog\Logger::class] = function (Container $container) {
     return new Logger($container->get('settings')->get('logger')['main']);
@@ -181,10 +151,19 @@ $container['notFoundHandler'] = function (Container $container) {
  *
  * @param Container $container
  * @return UserModel
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[UserModel::class] = function (Container $container) {
     return new UserModel($container->get(Connection::class));
+};
+
+/**
+ * UserModel container.
+ *
+ * @param Container $container
+ * @return RegisteredUserModel
+ */
+$container[RegisteredUserModel::class] = function (Container $container) {
+    return new RegisteredUserModel($container->get(Connection::class));
 };
 
 /**
@@ -192,7 +171,6 @@ $container[UserModel::class] = function (Container $container) {
  *
  * @param Container $container
  * @return UserHasActionModel
- * @throws \Interop\Container\Exception\ContainerException
  */
 $container[UserHasActionModel::class] = function (Container $container) {
     return new UserHasActionModel($container->get(Connection::class));

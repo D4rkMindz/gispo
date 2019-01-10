@@ -21,3 +21,12 @@ $app->get('/api/users/csv', route(['App\Controller\ApiController', 'getCsvAction
 
 $app->get('/users/{user_id}', route(['App\Controller\UserController', 'getUserAction']))
     ->setName('get.user');
+
+$app->get('/auth', route(['App\Controller\AuthController', 'indexAction']))
+    ->setName('get.auth');
+
+$app->post('/auth', route(['App\Controller\AuthController', 'authenticateAction']))
+    ->setName('post.auth');
+
+$app->get('/deauth', route(['App\Controller\AuthController', 'deauthenticateAction']))
+    ->setName('get.deauth');

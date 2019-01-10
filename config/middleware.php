@@ -1,10 +1,8 @@
 <?php
 
 use Aura\Session\Session;
-use Slim\Exception\NotFoundException;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Symfony\Component\Translation\Translator;
 
 $app = app();
 $container = $app->getContainer();
@@ -58,13 +56,38 @@ $container = $app->getContainer();
 //    return $response;
 //});
 
+$app->add(function (Request $request, Response $response, callable $next) use ($container) {
+    $relaxed = [
+        '/auth' => ['GET' => true, 'POST' => true],
+    ];
+
+    /** @var Session $sessionBundle */
+    $sessionBundle = $container->get(Session::class);
+    $session = $sessionBundle->getSegment('app');
+
+    $route = $request->getRequestTarget();
+    $method = strtoupper($request->getMethod());
+
+    if (array_key_exists($route, $relaxed)
+        && array_key_exists($method, $relaxed[$route])
+        && $relaxed[$route][$method]) {
+        return $next($request, $response);
+    }
+
+    if ($session->get('logged_in')) {
+        return $next($request, $response);
+    }
+
+    return $response->withRedirect('/auth', 301);
+});
+
 /**
  * Session Middleware
  *
  * @return Response
  */
-$app->add(function (Request $request, Response $response, $next) {
-    $session = $this->get(Session::class);
+$app->add(function (Request $request, Response $response, $next) use ($container) {
+    $session = $container->get(Session::class);
     $response = $next($request, $response);
     $session->commit();
 

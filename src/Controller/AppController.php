@@ -101,6 +101,14 @@ class AppController
     }
 
     /**
+     * Clear the session
+     */
+    public function clear()
+    {
+        $this->segment->clear();
+    }
+
+    /**
      * Render HTML
      *
      * @param Response $response
@@ -142,7 +150,7 @@ class AppController
      * @param int $status
      * @return Response
      */
-    public function redirect(Response $response, string $url, int $status = 301): Response
+    public function redirect(Response $response, string $url, ?int $status = 301): Response
     {
         return $response->withRedirect($url, $status);
     }
