@@ -20,16 +20,6 @@ function app(): App
 }
 
 /**
- * Route function.
- *
- * @param callable $callback
- * @return string
- */
-function route(callable $callback): string {
-    return implode(':', (array)$callback);
-}
-
-/**
  * Translation function (i18n).
  *
  * @param $message
