@@ -72,7 +72,13 @@ $config['logger'] = [
     ],
 ];
 
-$env = require_once __DIR__ . '/env.php';
+if (file_exists(__DIR__ . '/env.php')) {
+    $env = require_once __DIR__ . '/env.php';
+} elseif (file_exists(__DIR__ . '/../../env.php')) {
+    $env = require_once __DIR__ . '/../../env.php';
+} else {
+    throw new RuntimeException('ENV not found');
+}
 $config = array_replace_recursive($config, $env);
 
 return $config;
