@@ -1,21 +1,21 @@
 <?php
 
-use Phinx\Migration\AbstractMigration;
 use Phinx\Db\Adapter\MysqlAdapter;
+use Phinx\Migration\AbstractMigration;
 
 class Init extends AbstractMigration
 {
     public function change()
     {
         $this->table("actions", [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8',
-                'collation' => 'utf8_unicode_ci',
-                'comment' => '',
-                'row_format' => 'Dynamic',
-            ])
+            'id' => false,
+            'primary_key' => ['id'],
+            'engine' => 'InnoDB',
+            'encoding' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'comment' => '',
+            'row_format' => 'Dynamic',
+        ])
             ->addColumn('id', 'integer', [
                 'null' => false,
                 'limit' => MysqlAdapter::INT_REGULAR,
@@ -31,14 +31,14 @@ class Init extends AbstractMigration
             ])
             ->create();
         $this->table("registered_users", [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8',
-                'collation' => 'utf8_unicode_ci',
-                'comment' => '',
-                'row_format' => 'Dynamic',
-            ])
+            'id' => false,
+            'primary_key' => ['id'],
+            'engine' => 'InnoDB',
+            'encoding' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'comment' => '',
+            'row_format' => 'Dynamic',
+        ])
             ->addColumn('id', 'integer', [
                 'null' => false,
                 'limit' => MysqlAdapter::INT_REGULAR,
@@ -61,14 +61,14 @@ class Init extends AbstractMigration
             ])
             ->create();
         $this->table("user_has_actions", [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8',
-                'collation' => 'utf8_unicode_ci',
-                'comment' => '',
-                'row_format' => 'Dynamic',
-            ])
+            'id' => false,
+            'primary_key' => ['id'],
+            'engine' => 'InnoDB',
+            'encoding' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'comment' => '',
+            'row_format' => 'Dynamic',
+        ])
             ->addColumn('id', 'integer', [
                 'null' => false,
                 'limit' => MysqlAdapter::INT_REGULAR,
@@ -91,24 +91,24 @@ class Init extends AbstractMigration
                 'null' => false,
                 'after' => 'users_id',
             ])
-        ->addIndex(['users_id'], [
+            ->addIndex(['users_id'], [
                 'name' => 'fk_actions_has_users_users1_idx',
                 'unique' => false,
             ])
-        ->addIndex(['actions_id'], [
+            ->addIndex(['actions_id'], [
                 'name' => 'fk_actions_has_users_actions_idx',
                 'unique' => false,
             ])
             ->create();
         $this->table("users", [
-                'id' => false,
-                'primary_key' => ['id'],
-                'engine' => 'InnoDB',
-                'encoding' => 'utf8',
-                'collation' => 'utf8_unicode_ci',
-                'comment' => '',
-                'row_format' => 'Dynamic',
-            ])
+            'id' => false,
+            'primary_key' => ['id'],
+            'engine' => 'InnoDB',
+            'encoding' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'comment' => '',
+            'row_format' => 'Dynamic',
+        ])
             ->addColumn('id', 'integer', [
                 'null' => false,
                 'limit' => MysqlAdapter::INT_REGULAR,
