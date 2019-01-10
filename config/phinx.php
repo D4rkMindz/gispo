@@ -4,18 +4,19 @@ use Cake\Database\Connection;
 
 require_once __DIR__ . '/bootstrap.php';
 $container = app()->getContainer();
-$pdo = $container->get(Connection::class)->getConnection();
+$pdo = $container->get(Connection::class);
+$pdo = $pdo->getDriver()->getConnection();
 
-return array(
-    'paths' => array(
+return [
+    'paths' => [
         'migrations' => $container->get('settings')->get('migrations'),
-    ),
-    'environments' => array(
+    ],
+    'environments' => [
         'default_database' => 'local',
-        'local' => array(
+        'local' => [
             'name' => $container->get('settings')->get('db')['database'],
             'connection' => $pdo,
-        ),
-    ),
-);
+        ],
+    ],
+];
 

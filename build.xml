@@ -41,6 +41,9 @@
         <exec executable="${basedir}/vendor/bin/phinx-migrations.bat" dir="${basedir}/config" osfamily="windows">
             <arg line="generate --name ${migrationName} --overwrite"/>
         </exec>
+        <exec executable="${basedir}/vendor/bin/phinx-migrations" dir="${basedir}/config" osfamily="unix">
+            <arg line="generate --name ${migrationName} --overwrite"/>
+        </exec>
     </target>
 
     <target name="deploy" description="get your Repository from GitHub to your build folder">
