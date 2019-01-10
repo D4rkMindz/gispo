@@ -104,8 +104,8 @@
         <exec executable="php" failonerror="true">
             <arg line="${build_dir}/composer.phar install --no-dev --optimize-autoloader -d ${build_dir}/master"/>
         </exec>
-        <move file="${build_dir}/master/config/deploy.php" todir="${build_dir}"/>
-        <move file="${build_dir}/master/config/clean-up.php" todir="${build_dir}"/>
+        <move file="${build_dir}/master/bin/deploy.php" todir="${build_dir}"/>
+        <move file="${build_dir}/master/bin/clean-up.php" todir="${build_dir}"/>
         <!-- Clean up build -->
         <antcall target="clean-build"/>
 
