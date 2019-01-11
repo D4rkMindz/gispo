@@ -106,6 +106,7 @@ class AppController
     public function clear()
     {
         $this->segment->clear();
+        $this->session->regenerateId();
     }
 
     /**
