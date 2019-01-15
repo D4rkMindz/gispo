@@ -15,11 +15,6 @@ $config = [
     'addContentLengthHeader' => false,
 ];
 
-$config[Session::class] = [
-    'name' => $applicationName,
-    'cache_expire' => 14400,
-];
-
 $config[Translator::class] = [
     'locale' => 'de_CH',
     'path' => __DIR__ . '/../resources/locale',
@@ -56,8 +51,8 @@ $config['twig'] = [
     ],
 ];
 
-$config['session'] = [
-    'name' => 'app_template',
+$config[Session::class] = [
+    'name' => $applicationName,
     'autorefresh' => true,
     'lifetime' => '20 hours',
     'path' => '/', //default
