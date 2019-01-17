@@ -15,6 +15,12 @@ if (is_dir("./app/")) {
 }
 echo "Renaming ./release/ to ./app/\n";
 system("mv ./release/ ./app/");
+
+if (is_dir("./app_$time/public/img/users")) {
+    echo "Copying old images";
+    copy("./app_$time/public/img/users", "./app/public/img/users");
+}
+
 echo "Removing zipfile $argv[1]\n";
 system("rm $argv[1] -rf");
 if (!is_dir("./app/tmp")) {
