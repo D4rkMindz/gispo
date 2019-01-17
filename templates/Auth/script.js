@@ -1,10 +1,10 @@
 $(function () {
     $('[data-id=login]').on('click', function () {
         $('[data-id=error]').remove();
-        const usernameField = $('[data-id=username]');
-        const username = usernameField.val();
-        const password = $('[data-id=password]').val();
-        const url = baseurl() + 'auth';
+        var usernameField = $('[data-id=username]');
+        var username = usernameField.val();
+        var password = $('[data-id=password]').val();
+        var url = baseurl() + 'auth';
         sendPostAjax(url, JSON.stringify({username: username, password: password})).then(function (response) {
             if (response.success) {
                 window.location.href = baseurl();
