@@ -16,14 +16,20 @@
 
     {{ assets({files: [
         '@public/js/jquery.min.js',
-        '@public/js/bootstrap.min.js',
+    ], name: 'jquery.js'}) }}
+
+    {{ assets({files: [
+        '@public/js/mustache.min.js',
+    ], name: 'jquery.js'}) }}
+
+    {{ assets({files: [
         '@public/js/bootstrap.bundle.min.js',
-    ], name:'jquery-bootstrap.js'}) }}
+        '@public/js/bootstrap.min.js',
+        '@public/js/notifit.min.js',
+    ], name:'vendors.js'}) }}
 
     {# JavaScripts #}
     {{ assets({files: [
-        '@public/js/mustache.min.js',
-        '@public/js/notifit.min.js',
         '@public/js/script.js',
     ], name: 'script.js'}) }}
 
