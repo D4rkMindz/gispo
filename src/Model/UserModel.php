@@ -51,7 +51,7 @@ class UserModel extends AbstractModel
      * @param int $limit
      * @return array
      */
-    public function getAllUsers(int $limit = 1000): array
+    public function getAllUsers(?int $limit = 1000): array
     {
         $query = $this->getQuery($limit);
         $users = $query->execute()->fetchAll('assoc');
