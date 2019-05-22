@@ -65,16 +65,16 @@ $app->add(function (Request $request, Response $response, callable $next) use ($
     $sessionBundle = $container->get(Session::class);
     $session = $sessionBundle->getSegment('app');
 
+    if ($session->get('logged_in')) {
+        return $next($request, $response);
+    }
+
     $route = $request->getRequestTarget();
     $method = strtoupper($request->getMethod());
 
     if (array_key_exists($route, $relaxed)
         && array_key_exists($method, $relaxed[$route])
         && $relaxed[$route][$method]) {
-        return $next($request, $response);
-    }
-
-    if ($session->get('logged_in')) {
         return $next($request, $response);
     }
 
@@ -87,7 +87,9 @@ $app->add(function (Request $request, Response $response, callable $next) use ($
  * @return Response
  */
 $app->add(function (Request $request, Response $response, $next) use ($container) {
+    /** @var Session $session */
     $session = $container->get(Session::class);
+    $session->start();
     $response = $next($request, $response);
     $session->commit();
 
