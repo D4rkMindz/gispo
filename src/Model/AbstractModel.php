@@ -67,12 +67,12 @@ abstract class AbstractModel implements ModelInterface
      * @param array $row
      * @return StatementInterface
      */
-    protected function update(array $row, string $where): StatementInterface
+    protected function update(array $row, array $where): StatementInterface
     {
         $query = $this->connection->newQuery();
         $query->update($this->table)
             ->set($row)
-            ->where(['id' => $where]);
+            ->where($where);
         return $query->execute();
     }
     /**

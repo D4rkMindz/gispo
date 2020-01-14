@@ -107,6 +107,17 @@ class UserModel extends AbstractModel
     }
 
     /**
+     * Update by barcode
+     *
+     * @param array $user
+     * @return void
+     */
+    public function updateByBarcode(array $user)
+    {
+        $this->update($user, ['barcode' => $user['barcode']]);
+    }
+
+    /**
      * Find user by specific criteria
      *
      * @param string|null $barcode
