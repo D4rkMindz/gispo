@@ -21,9 +21,10 @@ class UserModel extends AbstractModel
     public function getIdByBarcode(string $barcode): string
     {
         $query = $this->newSelect();
-        $query->select('id')->where(['barcode'=> $barcode]);
+        $query->select('id')->where(['barcode' => $barcode]);
         $row = $query->execute()->fetch('assoc');
-        return $row?$row['id']:'';
+
+        return $row ? $row['id'] : '';
     }
 
     /**
@@ -38,11 +39,11 @@ class UserModel extends AbstractModel
         $query->select(['first_name', 'last_name'])->where(['id' => $userId]);
         $row = $query->execute()->fetch('assoc');
 
-        if (!$row){
+        if (!$row) {
             throw new RuntimeException("No user (" . $userId . ") found");
         }
 
-        return $row['first_name'] . ' ' . $row['last_name'] ;
+        return $row['first_name'] . ' ' . $row['last_name'];
     }
 
     /**
@@ -76,6 +77,33 @@ class UserModel extends AbstractModel
         $user = $query->execute()->fetch('assoc');
 
         return $user ?: [];
+    }
+
+    /**
+     * Check if user exists by barcode
+     *
+     * @param string $barcode
+     * @return bool
+     */
+    public function exists(string $barcode)
+    {
+        $query = $this->newSelect();
+        $query->select([1]);
+        $query->where(['users.barcode' => $barcode]);
+        $user = $query->execute()->fetch();
+
+        return !empty($user);
+    }
+
+    /**
+     * Save a user.
+     *
+     * @param array $user
+     * @return int
+     */
+    public function save(array $user)
+    {
+        return $this->insert($user);
     }
 
     /**

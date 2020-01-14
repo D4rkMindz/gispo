@@ -6,6 +6,7 @@ cache.properties
 *.bak
 
 
+
 config/env.php
 
 #Ant configuration files
@@ -28,6 +29,7 @@ build/
 #User data
 /docs/setup.sql
 /docs/users.zip
+/docs/pupils.csv
 
 /resources/csv/*
 

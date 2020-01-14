@@ -1,33 +1,35 @@
 {
-    "require": {
-        "slim/slim": "^3.9",
-        "cakephp/database": "^3.6",
-        "mailgun/mailgun-php": "^2.3",
-        "php-http/curl-client": "^1.7",
-        "monolog/monolog": "^1.23",
-        "slim/twig-view": "^2.3",
-        "odan/twig-translation": "^0.2.2",
-        "odan/twig-assets": "^0.2.2",
-        "symfony/translation": "^3.4",
-        "robmorgan/phinx": "^0.10",
-        "aura/session": "^2.1",
-        "zendframework/zend-hydrator": "^2.3",
-        "zendframework/zend-filter": "^2.7",
-        "zendframework/zend-servicemanager": "^3.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^6.4",
-        "phpunit/dbunit": "^3.0",
-        "odan/phinx-migrations-generator": "^4.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "App\\Test\\": "tests"
-        }
+  "require": {
+    "slim/slim": "^3.9",
+    "cakephp/database": "^3.6",
+    "mailgun/mailgun-php": "^2.3",
+    "php-http/curl-client": "^1.7",
+    "monolog/monolog": "^1.23",
+    "slim/twig-view": "^2.3",
+    "odan/twig-translation": "^0.2.2",
+    "odan/twig-assets": "^0.2.2",
+    "symfony/translation": "^3.4",
+    "robmorgan/phinx": "^0.10",
+    "aura/session": "^2.1",
+    "zendframework/zend-hydrator": "^2.3",
+    "zendframework/zend-filter": "^2.7",
+    "zendframework/zend-servicemanager": "^3.3",
+    "symfony/console": "4.0",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4",
+    "phpunit/dbunit": "^3.0",
+    "odan/phinx-migrations-generator": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Test\\": "tests"
+    }
+  }
 }
