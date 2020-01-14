@@ -87,11 +87,12 @@ function read_students(string $file, OutputInterface $out): array
                 'barcode' => $record[4],
             ];
         } else {
-            $withoutBarcode[] = [
+            $withoutBarcode[] = $students[] = [
                 'last_name' => $record[0],
                 'first_name' => $record[1],
                 'photo_file_name' => $record[2],
                 'email' => $record[3],
+                'barcode' => $record[4],
             ];
         }
     }
@@ -179,6 +180,7 @@ function save_images(string $file, OutputInterface $out)
         $out->writeln('<error>Please enable the ext-zip extension to continue</error>');
         return;
     }
+    $out->writeln('Extracting zip');
     $zip = new ZipArchive();
     $res = $zip->open($file);
     if ($res) {
