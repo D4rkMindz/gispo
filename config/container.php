@@ -143,7 +143,7 @@ $container[Monolog\Logger::class] = function (Container $container) {
  */
 $container['notFoundHandler'] = function (Container $container) {
     return function (Request $request, Response $response) use ($container) {
-        return $response->withRedirect($container->get('router')->pathFor('notFound', ['language' => 'en']));
+        return $response->withRedirect($container->get('router')->pathFor('get.error', ['language' => 'en']));
     };
 };
 
