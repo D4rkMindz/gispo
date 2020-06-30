@@ -36,8 +36,8 @@ if (!is_dir("./app/tmp/cache")) {
     system("mkdir ./app/tmp/cache");
 }
 //echo "NOT Updating permissions";
-echo "Updating directory permissions to 775\n";
-system("chmod -R 755 ./app");
+echo "Updating directory permissions to 777\n";
+system("chmod -R 777 ./app");
 //system("chmod 775 ./app/vendor/bin/phinx && chmod -R 775 ./app/vendor/robmorgan/");
 echo "Migrating database";
 system("cd ./app/config/ &&../vendor/robmorgan/phinx/bin/phinx migrate && cd ../..");
