@@ -129,8 +129,9 @@
         <delete dir="${build_dir}/master/tests"/>
         <delete file="${build_dir}/master/.gitignore"/>
         <delete file="${build_dir}/master/.styleci.yml"/>
-        <delete file="${build_dir}/master/.scrudinizer.yml"/>
+        <delete file="${build_dir}/master/.scrutinizer.yml"/>
         <delete file="${build_dir}/master/build.xml"/>
+        <delete file="${build_dir}/master/phpunit.xml"/>
         <delete file="${build_dir}/master/phpstan.neon"/>
         <delete file="${build_dir}/master/README.md"/>
         <delete file="${build_dir}/master/composer.json"/>
