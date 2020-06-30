@@ -182,10 +182,11 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="${basedir}/vendor/bin/phpunit${ext}" searchpath="true" resolveexecutable="true" failonerror="true" taskname="phpunit">
+        <exec executable="${basedir}/vendor/bin/phpunit${ext}" searchpath="true" resolveexecutable="true"
+              failonerror="true" taskname="phpunit">
             <arg value="-v"/>
-            <arg value="--configuration" />
-            <arg path="${basedir}/phpunit.xml" />
+            <arg value="--configuration"/>
+            <arg path="${basedir}/phpunit.xml"/>
         </exec>
     </target>
 
@@ -201,15 +202,16 @@
     </target>
 
     <target name="phpunit-coverage" description="Run unit tests with PHPUnit with coverage">
-        <delete dir="${basedir}/build/coverage" />
-        <mkdir dir="${basedir}/build/coverage" />
-        <exec executable="${basedir}/vendor/bin/phpunit${ext}" searchpath="true" resolveexecutable="true" failonerror="true" taskname="phpunit-coverage">
-            <arg value="--configuration" />
-            <arg path="${basedir}/phpunit.xml" />
-            <arg value="--coverage-clover" />
-            <arg path="${basedir}/build/logs/clover.xml" />
-            <arg value="--coverage-html" />
-            <arg path="${basedir}/build/coverage" />
+        <delete dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <exec executable="${basedir}/vendor/bin/phpunit${ext}" searchpath="true" resolveexecutable="true"
+              failonerror="true" taskname="phpunit-coverage">
+            <arg value="--configuration"/>
+            <arg path="${basedir}/phpunit.xml"/>
+            <arg value="--coverage-clover"/>
+            <arg path="${basedir}/build/logs/clover.xml"/>
+            <arg value="--coverage-html"/>
+            <arg path="${basedir}/build/coverage"/>
         </exec>
     </target>
 
